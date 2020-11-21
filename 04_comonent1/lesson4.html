@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+  <p>
+    <a href="lesson5.html">Next</a>
+  </p>
+  <h1>Calculate price</h1>
+  <div id="message">Loading...</div>
+
+  <script type="text/babel">
+    let dom = document.getElementById('message');
+
+    const tax = 0.1
+    function Calculation(props) {
+      let totalPrice = Math.floor(props.price * (1 + tax))
+    }
+  </script>
+</body>
+
+</html>

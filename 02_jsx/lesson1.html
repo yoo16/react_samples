@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+  <p>
+    <a href="lesson2.html">Next</a>
+  </p>
+  <h1>Hello React</h1>
+  <div id="message">Loading...</div>
+
+  <script type="text/babel">
+    let dom = document.getElementById('message');
+    let element = (
+      <div>
+        <h2>JSX</h2>
+        <p>Hello JSX</p>
+      </div>
+    );
+    ReactDOM.render(element, dom);
+  </script>
+</body>
+
+</html>

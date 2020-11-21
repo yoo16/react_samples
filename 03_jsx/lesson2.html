@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+  <p>
+    <a href="lesson1.html">Prev</a>
+    <a href="lesson3.html">Next</a>
+  </p>
+  <h1>ユーザ一覧</h1>
+  <div id="userList">Loading...</div>
+
+  <script type="text/babel">
+    const domUserList = document.getElementById('userList');
+    let users = [
+      { id: 1, name: 'A', email: 'aaa@example.com' },
+      { id: 2, name: 'B', email: 'bbb@example.com' },
+      { id: 3, name: 'C', email: 'ccc@example.com' },
+    ];
+    let elementUserList = (
+      <div>
+      {users.map((user) => 
+          <p>{user.id}</p>
+      )}
+      </div>
+    );
+    ReactDOM.render(elementUserList, domUserList);
+  </script>
+</body>
+
+</html>
