@@ -1,8 +1,16 @@
+import Link from 'next/link'
 
-export default() => 
+export default () =>
+  <div>
+    <h1>Hello Next.js</h1>
     <div>
-        <h1>Hello Next.js</h1>
-        <div>
-            このページは Next.js のトップページです。
+      このページは Next.js のトップページです。
         </div>
-    </div>
+    <ul>
+      <li>
+        <Link href="/profile">
+          <a>プロフィール</a>
+        </Link>
+      </li>
+    </ul>
+  </div>
