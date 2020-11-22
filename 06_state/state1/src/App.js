@@ -7,11 +7,13 @@ class App extends Component {
     constructor(props) {
         super(props)
         this.message = props.message
+        //state の利用
         this.state = {
             message: 'This is state message!',
             counter: 0,
             time: 0,
         }
+        //onClick をバインド
         this.updateMessage = this.updateMessage.bind(this)
     }
     render() {
@@ -32,17 +34,21 @@ class App extends Component {
         )
     }
     updateMessage() {
+        //state の設定
         this.setState((state, props) => ({
+            //++ 演算子ではなく + 1
             counter: state.counter + 1,
             message: state.counter
         }))
     }
     componentWillUnmount() {
+        //アンマウント時にタイマークリア
         clearInterval(this.timer);
     }
     componentDidMount() {
         this.timer = setInterval(() => {
             this.setState((state) => ({
+                //++ 演算子ではなく + 1
                 time: state.time + 1,
             }))
         }, 1000)
