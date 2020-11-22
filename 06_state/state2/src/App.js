@@ -1,10 +1,10 @@
 import Form from './Form';
 import './App.css';
 
-function App() {
+export default function App() {
   return (
-      <Form initState="HI" />
+      <div className="container">
+      <Form defaultRoomId="2" />
+      </div>
   );
 }
-
-export default App;

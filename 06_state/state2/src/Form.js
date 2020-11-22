@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 export default class Form extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            usstate: props.initState,
-            desc: 'This is for a text area.'
+            rooms: props.defaultRoomId,
+            body: ''
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -15,7 +15,7 @@ export default class Form extends Component {
 
     onChange(e) {
         console.log(e.target.value);
-        this.setState({ usstate: e.target.value });
+        this.setState({ rooms: e.target.value });
     }
 
     onSubmit(e) {
@@ -25,38 +25,38 @@ export default class Form extends Component {
     }
 
     onTextAreaChange(e) {
-        this.setState({ desc: e.target.value });
+        this.setState({ body: e.target.value });
     }
 
     render() {
-        var states = [
-            { code: "CA", name: "California" },
-            { code: "HI", name: "Hawaii" },
-            { code: "TX", name: "Texas" },
-            { code: "WA", name: "Washington" }];
-        var options = states.map(
-            (n) => (
-                <option key={n.code} value={n.code}>
-                    {n.name}
-                </option>
-            )
-        );
+        let rooms = [
+            { id: "1", name: "Room1" },
+            { id: "2", name: "Room2" },
+            { id: "3", name: "Room3" },
+            { id: "4", name: "Room4" }
+        ];
+        let options = rooms.map((room) => (
+            <option key={room.id} value={room.id}>{room.name}</option>
+        ));
         return (
-            <form onSubmit={this.onSubmit}>
-                <div>
-                    <select
-                        value={this.state.usstate}
-                        onChange={this.onChange}>
-                        {options}
-                    </select>
-                </div>
-                <textarea
-                    value={this.state.desc}
-                    onChange={this.onTextAreaChange} />
-                <div>
-                    <button type="submit">OK</button>
-                </div>
-            </form>
+            <div>
+                <form onSubmit={this.onSubmit}>
+                    <div>
+                        <select className="form-control col-3"
+                            value={this.state.rooms}
+                            onChange={this.onChange}>
+                            {options}
+                        </select>
+                    </div>
+                    <textarea
+                        className="form-control"
+                        value={this.state.body}
+                        onChange={this.onTextAreaChange} />
+                    <div>
+                        <button className="btn btn-primary" type="submit">つぶやく</button>
+                    </div>
+                </form>
+            </div>
         );
     }
 }
