@@ -5,10 +5,11 @@ export const Calculate = () => {
     const tax = 1.1;
     const [count, setCount] = useState(0)
     const [show, setShow] = useState(false);
-    const [values, setValues] = useState({
+    const initialValues = {
         price: 0,
         totalPrice: 0,
-    });
+    }
+    const [values, setValues] = useState(initialValues);
 
     function handleCalculate(e) {
         let price = e.target.value;
@@ -19,8 +20,8 @@ export const Calculate = () => {
         })
     }
 
-    function handleSend(e) {
-        alert(values.totalPrice);
+    function handleInit(e) {
+        setValues(initialValues);
     }
 
     return (
@@ -43,13 +44,13 @@ export const Calculate = () => {
                     <h3>Total Price</h3>
                     <p>{values.totalPrice}</p>
                     <input type="text"
-                        defaultValue={values.price}
+                        value={values.price}
                         onChange={handleCalculate}
                     />
                 </div>
 
                 <div>
-                    <button onClick={handleSend}>Send</button>
+                    <button onClick={handleInit}>Clear</button>
                 </div>
             </div>
         </div>
