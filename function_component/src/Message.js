@@ -1,10 +1,13 @@
 import React from 'react'
 import './Message.css'
 
-export const Message = () => {
+export function Message(props) {
+
     return (
-        <div className="message">
-           Message Comonent! 
+        <div style={props.data.style} className="message">
+            {props.data.message}
         </div>
     )
 }
+
+export default Message;

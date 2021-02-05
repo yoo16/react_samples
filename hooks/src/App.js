@@ -1,6 +1,7 @@
-import './App.css'
-import { Message } from './Message'
-import Calculate from './Calculate'
+import logo from './logo.svg';
+import './App.css';
+import './Cart';
+import Cart from './Cart';
 
 function App() {
     let data = {
@@ -14,10 +15,8 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <h2>React App</h2>
-                <p>This is App Component!</p>
-                <Message data={data} />
-                <Calculate />
+                App Component
+      <Cart data={data} />
             </header>
         </div>
     );
