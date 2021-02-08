@@ -14,7 +14,7 @@ export function Calculate() {
 
     function handleCalculate(e) {
         let price = e.target.value;
-        let totalPrice = Math.round(price * tax);
+        let totalPrice = (price * tax).toFixed(0);
         setValues({
             price: price,
             totalPrice: totalPrice,
