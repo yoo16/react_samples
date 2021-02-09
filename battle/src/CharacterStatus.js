@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
-import { Grid } from '@material-ui/core';
+import React from 'react'
 import { Box } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 
 import './Character.css';
 
-const CharacterList = ({ character, battle, handleCloseStatus }) => {
+const CharacterList = ({ character, handleCloseStatus }) => {
 
     return (
         <Box padding={1} align="center">

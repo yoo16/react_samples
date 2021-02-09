@@ -1,17 +1,18 @@
 import './App.css';
 import React, { useState, useEffect } from 'react'
-import characters from './json/characters'
 import CharacterList from './CharacterList'
 import BattleControl from './BattleControl'
+import Message from './Message'
 import CharacterStatus from './CharacterStatus'
+import characters from './json/characters'
+import monsters from './json/monsters'
 
 import { Grid } from '@material-ui/core';
 import { Box } from '@material-ui/core';
-import { Button } from '@material-ui/core';
 
 function App() {
     const selectCharacter = (id) => {
-        const character = characters.find(element => element.id == id);
+        const character = characters.find(element => element.id === id);
         if (character.id) setCharacter(character);
     }
 
@@ -26,60 +27,32 @@ function App() {
     }
 
     const handleBattle = (type) => {
-        console.log('handleBattle');
-        battle[character.id] = type;
+        battle.push({ character_id: character.id, type: type });
         setBattle(battle)
 
-        if (type == 'escape') {
-            startBattle();
-            return;
+        let index = battle.length;
+        setCharacter(characters[index]);
+
+        if (type === 'escape' || battle.length === 4) {
+            return startBattle();
         }
-        if (character.id == 4) {
-            startBattle();
-            return;
-        } else {
-            let next_id = character.id + 1;
-            if (next_id > 4) next_id = 1;
-            selectCharacter(next_id);
-        }
-    };
+    }
 
     const startBattle = () => {
-        console.log('Start Battle');
-
+        selectCharacter(1);
         setIsBattle(true);
-        setCharacter(characters[0]);
-        console.log(message);
     }
-
-    const escape = () => {
-        console.log('Escape!!');
-    }
-
-    let monsterName = 'スライム';
-    const initialMessage = monsterName + 'があらわれた！';
 
     //state
+    let monster = monsters[0];
+
     const [character, setCharacter] = useState(characters[0]);
-    const [message, setMessage] = useState(initialMessage);
-    const [battle, setBattle] = useState({});
+    const [battle, setBattle] = useState([]);
     const [isBattle, setIsBattle] = useState(false);
     const [isOpenStatus, setIsOpenStatus] = useState(false);
 
     useEffect(() => {
-        if (isBattle == true) {
-            const battleType = battle[character.id];
-            let message = '';
-            //TODO
-            if (battleType == 'attack') {
-                message = character.name + 'のこうげき！';
-            } else if (battleType == 'magic') {
-                message = character.name + 'はまほうをとなえた！';
-            } else if (battleType == 'escape') {
-                message = character.name + 'はにげだした！';
-            }
-            setMessage(message);
-        }
+
     });
 
     return (
@@ -91,28 +64,29 @@ function App() {
                 />
 
                 <Box align="center" mt={3}>
-                    <img src="images/slime.png" width="200" />
+                    <img src={monster.image} width={200} alt={monster.name} />
                 </Box>
 
-                {(isOpenStatus == true && character.id) && 
+                {(isOpenStatus === true && character.id) &&
                     <CharacterStatus
                         character={character}
                         handleCloseStatus={handleCloseStatus} />
                 }
-                <Grid container justify="center">
+                <Grid container justify="center" spacing={3}>
+                    <Grid item xs={3}></Grid>
                     <Grid item xs={6}>
-                        <Box border={1} borderColor="white" borderRadius={8} padding={2}>
-                            {message}
-                        </Box>
+                        <Message monster={monster} battle={battle} isBattle={isBattle} />
+                    </Grid>
+                    <Grid item xs={2}>
+                        {(isBattle !== true) &&
+                            <BattleControl
+                                character={character}
+                                handleBattle={handleBattle}
+                                handleShowStatus={handleShowStatus} />
+                        }
                     </Grid>
                 </Grid>
-                {(isBattle != true) && 
-                <BattleControl
-                    character={character}
-                    message={message}
-                    handleBattle={handleBattle}
-                    handleShowStatus={handleShowStatus} />
-                }
+
             </header>
         </div>
     );

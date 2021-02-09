@@ -1,20 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Grid } from '@material-ui/core';
 import { Box } from '@material-ui/core';
-import { Button } from '@material-ui/core';
-
-import InfoIcon from '@material-ui/icons/Info';
 import battleNames from './json/battle_names'
-
-import './Character.css';
-
-console.log(battleNames);
 
 const CharacterList = ({ characters, battle }) => {
     return (
         <React.Fragment>
             <Grid container spacing={1}>
-                {characters.map((character) => {
+                {characters.map((character, index) => {
                     return (
                         <Grid item xs={6} md={3} key={character.id}>
                             <Box border={1} borderColor="white" borderRadius={8} padding={2}>
@@ -24,10 +17,10 @@ const CharacterList = ({ characters, battle }) => {
                                 <Grid container>
                                     <Grid item xs>Lv.{character.level}</Grid>
                                     <Grid item xs align="right">
-                                        {battle[character.id] ? battleNames[battle[character.id]] : ''}
+                                    {(battle[index]) && battleNames[battle[index].type]}
                                     </Grid>
                                 </Grid>
-                                <Box>
+                                <Box mt={2}>
                                     <Box width={25} display="inline-block">HP</Box>
                                     <Box width={25} display="inline-block" align="right" mr={3}>{character.hp}</Box>
                                     <Box width={25} display="inline-block">MP</Box>
