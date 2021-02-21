@@ -16,40 +16,113 @@ function App() {
         if (character.id) setCharacter(character);
     }
 
-    const handleShowStatus = (e) => {
-        const id = e.currentTarget.getAttribute('data-character-id');
-        selectCharacter(id);
-        if (character.id) setIsOpenStatus(true);
-    };
-
-    const handleCloseStatus = (e) => {
-        setIsOpenStatus(false);
+    const battleMessage = (battleType) => {
+        if (!battleType) return '';
+        let message = '';
+        if (battleType === 'attack') {
+            message = character.name + 'のこうげき！';
+        } else if (battleType === 'magic') {
+            message = character.name + 'はまほうをとなえた！';
+        } else if (battleType === 'escape') {
+            message = character.name + 'たちはにげだした！';
+        }
+        return message;
     }
 
     const handleBattle = (type) => {
-        battle.push({ character_id: character.id, type: type });
-        setBattle(battle)
+        //TODO battle logic & Model, Service
+        battle.push({
+            character_id: character.id,
+            type: type,
+            is_turn: true,
+            message: battleMessage(type),
+        });
+        setBattle(battle);
 
-        let index = battle.length;
-        setCharacter(characters[index]);
+        if (type === 'escape') {
+            setBattleIndex(0);
+            setIsBattle(true);
+            setIsSelectBattle(false);
+            return;
+        }
 
-        if (type === 'escape' || battle.length === 4) {
+        setBattleIndex(battleIndex + 1);
+        setCharacter(characters[battleIndex + 1]);
+        if (battleIndex === 3) {
             return startBattle();
         }
     }
 
+    const selectBattle = () => {
+        setBattleIndex(0);
+        setCharacter(characters[0]);
+        setIsSelectBattle(true);
+        setBattle([]);
+    }
+
     const startBattle = () => {
         selectCharacter(1);
+        setBattleIndex(0);
+        setIsSelectBattle(false);
         setIsBattle(true);
     }
 
-    //state
-    let monster = monsters[0];
+    const endBattle = () => {
+        setIsBattle(false);
+        setBattle([]);
+    }
 
+    const nextCharacterBattle = () => {
+        setBattleIndex(battleIndex + 1);
+        setCharacter(characters[battleIndex + 1]);
+    }
+
+    const handleNextBattle = () => {
+        if (!isBattle) return;
+        attackByCharacter();
+
+        //TODO monster model
+        if (monster.hp < 0) {
+            endBattle();
+            return;
+        } else {
+            attackByMonster();
+        }
+
+        if (battleIndex === 3) {
+            selectBattle();
+        } else {
+            nextCharacterBattle();
+        }
+    }
+
+    const calculateDamage = (power) => {
+        const max = power + 5;
+        const min = power;
+        return Math.round(Math.random() * (max - min)) + min;
+    }
+
+    const attackByCharacter = () => {
+        monster.hp -= calculateDamage(character.power);
+        setMonster(monster);
+        console.log(monster);
+    }
+
+    const attackByMonster = () => {
+        const index = Math.floor(Math.random() * 3);
+        let _character = characters[index];
+        _character.hp -= calculateDamage(monster.power);
+        setCharacter(_character);
+    }
+
+    //state
+    // let monster = monsters[0];
+    const [monster, setMonster] = useState(monsters[0]);
     const [character, setCharacter] = useState(characters[0]);
     const [battle, setBattle] = useState([]);
     const [isBattle, setIsBattle] = useState(false);
-    const [isOpenStatus, setIsOpenStatus] = useState(false);
+    const [isSelectBattle, setIsSelectBattle] = useState(true);
+    const [battleIndex, setBattleIndex] = useState(0);
 
     useEffect(() => {
 
@@ -67,22 +140,26 @@ function App() {
                     <img src={monster.image} width={200} alt={monster.name} />
                 </Box>
 
-                {(isOpenStatus === true && character.id) &&
-                    <CharacterStatus
-                        character={character}
-                        handleCloseStatus={handleCloseStatus} />
-                }
                 <Grid container justify="center" spacing={3}>
-                    <Grid item xs={3}></Grid>
-                    <Grid item xs={6}>
-                        <Message monster={monster} battle={battle} isBattle={isBattle} />
+                    <Grid item xs={12} md={3}>
+                        <CharacterStatus character={character} />
                     </Grid>
-                    <Grid item xs={2}>
-                        {(isBattle !== true) &&
+                    <Grid item xs={12} md={6}>
+                        <Message
+                            monster={monster}
+                            battle={battle}
+                            battleIndex={battleIndex}
+                            isBattle={isBattle}
+                            isSelectBattle={isSelectBattle}
+                            handleNextBattle={handleNextBattle}
+                        />
+                    </Grid>
+                    <Grid item xs={6} md={2}>
+                        {(isSelectBattle === true) &&
                             <BattleControl
                                 character={character}
                                 handleBattle={handleBattle}
-                                handleShowStatus={handleShowStatus} />
+                            ></BattleControl>
                         }
                     </Grid>
                 </Grid>

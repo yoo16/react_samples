@@ -1,8 +1,6 @@
 import React from 'react'
-import { Grid } from '@material-ui/core';
 import { Box } from '@material-ui/core';
 import { Button } from '@material-ui/core';
-import InfoIcon from '@material-ui/icons/Info';
 
 import './Character.css';
 
@@ -42,6 +40,12 @@ const BattleControl = ({ character, handleBattle, handleShowStatus }) => {
                     color="inherit"
                     disabled={(character.id > 1)}
                     disableElevation>にげる</Button>
+            </Box>
+            <Box>
+                <Button
+                    onClick={handleShowStatus}
+                    color="inherit"
+                    disableElevation>ステータス</Button>
             </Box>
         </Box>
     );
