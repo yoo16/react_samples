@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "name": "Prof. Kris Keebler III",
+        "email": "heaney.abdullah@example.com",
+        "email_verified_at": "2021-01-26T12:18:14.000000Z",
+        "created_at": "2021-01-26T12:18:14.000000Z",
+        "updated_at": "2021-01-26T12:18:14.000000Z"
+    },
+    {
+        "id": 2,
+        "name": "Melvin Stokes",
+        "email": "providenci67@example.net",
+        "email_verified_at": "2021-01-26T12:18:14.000000Z",
+        "created_at": "2021-01-26T12:18:14.000000Z",
+        "updated_at": "2021-01-26T12:18:14.000000Z"
+    },
+    {
+        "id": 3,
+        "name": "Prof. Ricardo Nikolaus",
+        "email": "orn.brisa@example.org",
+        "email_verified_at": "2021-01-26T12:18:14.000000Z",
+        "created_at": "2021-01-26T12:18:14.000000Z",
+        "updated_at": "2021-01-26T12:18:14.000000Z"
+    },
+    {
+        "id": 4,
+        "name": "Ms. Jaqueline Sporer",
+        "email": "awuckert@example.net",
+        "email_verified_at": "2021-01-26T12:18:14.000000Z",
+        "created_at": "2021-01-26T12:18:14.000000Z",
+        "updated_at": "2021-01-26T12:18:14.000000Z"
+    },
+    {
+        "id": 5,
+        "name": "Deondre Lehner",
+        "email": "isabella60@example.net",
+        "email_verified_at": "2021-01-26T12:18:14.000000Z",
+        "created_at": "2021-01-26T12:18:14.000000Z",
+        "updated_at": "2021-01-26T12:18:14.000000Z"
+    },
+    {
+        "id": 6,
+        "name": "Wilfrid Marks",
+        "email": "lexus.nolan@example.com",
+        "email_verified_at": "2021-01-26T12:18:14.000000Z",
+        "created_at": "2021-01-26T12:18:14.000000Z",
+        "updated_at": "2021-01-26T12:18:14.000000Z"
+    },
+    {
+        "id": 7,
+        "name": "Thelma Sanford",
+        "email": "skirlin@example.org",
+        "email_verified_at": "2021-01-26T12:18:14.000000Z",
+        "created_at": "2021-01-26T12:18:14.000000Z",
+        "updated_at": "2021-01-26T12:18:14.000000Z"
+    },
+    {
+        "id": 8,
+        "name": "Mae Fadel",
+        "email": "lupe22@example.net",
+        "email_verified_at": "2021-01-26T12:18:14.000000Z",
+        "created_at": "2021-01-26T12:18:14.000000Z",
+        "updated_at": "2021-01-26T12:18:14.000000Z"
+    },
+    {
+        "id": 9,
+        "name": "Dr. Florida Beatty IV",
+        "email": "lilla82@example.net",
+        "email_verified_at": "2021-01-26T12:18:14.000000Z",
+        "created_at": "2021-01-26T12:18:14.000000Z",
+        "updated_at": "2021-01-26T12:18:14.000000Z"
+    },
+    {
+        "id": 10,
+        "name": "Prof. Elmore Goyette",
+        "email": "mikayla25@example.org",
+        "email_verified_at": "2021-01-26T12:18:14.000000Z",
+        "created_at": "2021-01-26T12:18:14.000000Z",
+        "updated_at": "2021-01-26T12:18:14.000000Z"
+    }
+]
