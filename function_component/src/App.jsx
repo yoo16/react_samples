@@ -1,14 +1,10 @@
 import './App.css'
-import { Message } from './Message'
-import Calculate from './Calculate'
+import CountPage from './CountPage';
+import Message from './Message'
 
 function App() {
-    let data = {
-        style: {
-            border: '1px solid white',
-            margin: '10px',
-            padding: '20px',
-        },
+    var user = {
+        name: "Tokyo",
         message: 'Message From App!'
     }
     return (
@@ -16,8 +12,8 @@ function App() {
             <header className="App-header">
                 <h2>React App</h2>
                 <p>This is App Component!</p>
-                <Message data={data} />
-                <Calculate />
+                <Message user={user} /> 
+                <CountPage />
             </header>
         </div>
     );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 //import socketio from 'socket.io-client'
 import ChatForm from './ChatForm'
+import socket from 'socketio';
 
 const host = 'http://localhost';
 
